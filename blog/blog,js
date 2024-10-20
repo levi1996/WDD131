@@ -1,0 +1,19 @@
+// Mock data for books
+const books = [
+    {
+        title: "The Great Book",
+        author: "John Doe",
+        year: "2023",
+        cover: "book-cover.jpg",
+        description: "This is a fantastic book about adventure and discovery."
+    },
+    {
+        title: "Another Great Book",
+        author: "Jane Doe",
+        year: "2022",
+        cover: "another-book-cover.jpg",
+        description: "An exciting tale of mystery and suspense."
+    }
+];
+
+// You can use this data later for dynamic content using JavaScript.
