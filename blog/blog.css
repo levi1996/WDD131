@@ -52,19 +52,30 @@ main {
     min-height: 500px; /* Ensures the main content takes enough space */
 }
 
+/* Article styling */
 article {
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 20px;
+    margin-bottom: 20px; /* Space between articles */
 }
 
-article .details {
-    background-color: #EFC69B;
+.details {
+    text-align: right;
     padding: 10px;
+    background-color: #EFC69B;
+    border-right: 2px solid #AF1B3F;
+    margin-right: 10px;
+    line-height: 1.4; /* Adjusted line spacing */
 }
 
-article .content h2 {
-    margin: 0;
+.content h2 {
+    margin-top: -5px; /* Adjust to align with the date */
+}
+
+.content img {
+    display: block;
+    margin: 0 auto; /* Center the image */
 }
 
 aside {
