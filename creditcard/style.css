@@ -1,0 +1,86 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f9;
+  }
+  
+  .credit-card-container {
+    display: grid;
+    grid-template-areas:
+      "front"
+      "back";
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .card-front, .card-back {
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #d3d3d3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-front {
+    grid-area: front;
+    z-index: 1;
+  }
+  
+  .card-back {
+    grid-area: back;
+    background-color: #b0b0b0;
+  }
+  
+  .total {
+    font-weight: bold;
+  }
+  
+  label {
+    display: block;
+    font-size: 0.9em;
+    margin: 8px 0 4px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .expiration {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .expiration input {
+    width: 50%;
+  }
+  
+  /* Card back styling */
+  .black-bar {
+    height: 30px;
+    background-color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Button styling */
+  .submit-button {
+    display: block;
+    width: 320px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
