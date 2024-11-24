@@ -1,0 +1,300 @@
+
+<html><head><base href="https://demo.spikesync.com">
+    <style>
+    :root {
+      --primary: #00887A;
+      --secondary: #EAEAEA;
+      --accent: #D4F4DD;
+      --text: #333333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+    
+    body {
+      background: var(--secondary);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .logo {
+      height: 60px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    
+    .tournament-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 2rem;
+      padding: 2rem;
+      flex: 1;
+      height: calc(100vh - 140px);
+    }
+    
+    .tournament-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .tournament-card h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .tournament-card p {
+      font-size: 1.2rem;
+    }
+    
+    .tournament-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .pool-section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .pool-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .pool-tab {
+      padding: 0.5rem 2rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+    
+    .pool-tab:hover {
+      opacity: 0.9;
+    }
+    
+    .pool-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .pool-table th,
+    .pool-table td {
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    
+    .pool-table th {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .match-section {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+    
+    .back-button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+    
+    .footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      width: 100%;
+    }
+    
+    @media (max-width: 768px) {
+      .tournament-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        height: auto;
+      }
+      
+      .pool-table {
+        font-size: 0.9rem;
+      }
+    
+      .header {
+        flex-direction: column;
+        padding: 0.5rem;
+      }
+    
+      .logo {
+        height: 40px;
+      }
+    }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+    
+    <header class="header">
+      <img src="/SpikeSyncLogo.jpg" alt="SpikeSync logo - volleyball line drawing with text Southern LA" class="logo">
+      <h1>Spike Sync</h1>
+    </header>
+    
+    <main class="tournament-grid">
+      <div class="tournament-card" onclick="showTournament(1)">
+        <h2>Tournament #1</h2>
+        <p>Click to view details</p>
+      </div>
+      <div class="tournament-card" onclick="showTournament(2)">
+        <h2>Tournament #2</h2>
+        <p>Click to view details</p>
+      </div>
+      <div class="tournament-card" onclick="showTournament(3)">
+        <h2>Tournament #3</h2>
+        <p>Click to view details</p>
+      </div>
+      <div class="tournament-card" onclick="showTournament(4)">
+        <h2>Tournament #4</h2>
+        <p>Click to view details</p>
+      </div>
+    </main>
+    
+    <div class="pool-section" style="display: none;" id="tournamentView">
+      <button class="back-button" onclick="showHome()">← Back to Tournaments</button>
+      <h2 id="tournamentTitle" style="margin-bottom: 2rem;">Tournament Details</h2>
+      
+      <div class="pool-tabs">
+        <button class="pool-tab" onclick="showPool('A')">Pool A</button>
+        <button class="pool-tab" onclick="showPool('B')">Pool B</button>
+        <button class="pool-tab" onclick="showPool('C')">Pool C</button>
+      </div>
+    
+      <table class="pool-table" id="poolTable">
+        <thead>
+          <tr>
+            <th>Team Name</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Point Differential</th>
+            <th>Total Points</th>
+            <th>Place</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic content will be inserted here -->
+        </tbody>
+      </table>
+    
+      <div class="match-section">
+        <h3>Match Results</h3>
+        <div id="matchResults">
+          <!-- Dynamic match results will be inserted here -->
+        </div>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <a href="https://demo.spikesync.com" style="color: white; text-decoration: none;">Home Page</a>
+    </footer>
+    
+    <script>
+    const poolData = {
+      A: [
+        { team: "Spike Masters", wins: 3, losses: 0, differential: 45, total: 125, place: 1 },
+        { team: "Beach Kings", wins: 2, losses: 1, differential: 25, total: 115, place: 2 },
+        { team: "Net Warriors", wins: 1, losses: 2, differential: -15, total: 95, place: 3 },
+        { team: "Sand Stars", wins: 0, losses: 3, differential: -55, total: 75, place: 4 }
+      ],
+      B: [
+        { team: "Volley Vikings", wins: 3, losses: 0, differential: 40, total: 120, place: 1 },
+        { team: "Serve Squad", wins: 2, losses: 1, differential: 20, total: 110, place: 2 },
+        { team: "Block Brigade", wins: 1, losses: 2, differential: -10, total: 90, place: 3 },
+        { team: "Dig Dynasty", wins: 0, losses: 3, differential: -50, total: 70, place: 4 }
+      ],
+      C: [
+        { team: "Set Strikers", wins: 3, losses: 0, differential: 35, total: 115, place: 1 },
+        { team: "Bump Bruisers", wins: 2, losses: 1, differential: 15, total: 105, place: 2 },
+        { team: "Rally Rebels", wins: 1, losses: 2, differential: -5, total: 85, place: 3 },
+        { team: "Court Crushers", wins: 0, losses: 3, differential: -45, total: 65, place: 4 }
+      ]
+    };
+    
+    function showPool(pool) {
+      const tableBody = document.querySelector('#poolTable tbody');
+      tableBody.innerHTML = '';
+      
+      poolData[pool].forEach(team => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${team.team}</td>
+          <td>${team.wins}</td>
+          <td>${team.losses}</td>
+          <td>${team.differential}</td>
+          <td>${team.total}</td>
+          <td>${team.place}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+    
+    function showTournament(number) {
+      document.querySelector('.tournament-grid').style.display = 'none';
+      document.querySelector('#tournamentView').style.display = 'block';
+      document.querySelector('#tournamentTitle').textContent = `Tournament #${number} Details`;
+      showPool('A'); // Show Pool A by default
+    }
+    
+    function showHome() {
+      document.querySelector('.tournament-grid').style.display = 'grid';
+      document.querySelector('#tournamentView').style.display = 'none';
+    }
+    
+    // Show Pool A by default when tournament view is active
+    showPool('A');
+    </script>
+    
+    </body></html>
